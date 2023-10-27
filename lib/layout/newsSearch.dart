@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 import '../screens/news/newsWidget.dart';
 import '../shared/network/remote/api_manager.dart';
@@ -9,10 +8,14 @@ class NewsSearch extends SearchDelegate {
   ThemeData appBarTheme(BuildContext context) {
     return ThemeData(
       appBarTheme: const AppBarTheme(
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(25),
+                  bottomRight: Radius.circular(25))),
           toolbarHeight: 70,
-          elevation: 10,
           color: Color(0xFF39A552),
-          titleTextStyle: TextStyle(backgroundColor: Colors.white)
+          titleTextStyle:
+              TextStyle(backgroundColor: Colors.white, color: Colors.white)
           //app bar color I wanted
           ),
     );
@@ -22,12 +25,11 @@ class NewsSearch extends SearchDelegate {
   List<Widget>? buildActions(BuildContext context) {
     return [
       IconButton(
-        icon: Icon(
-          Icons.search_outlined,
-          color: Colors.white,
-        ),
-        onPressed: () => showResults(context),
-      ),
+          onPressed: () => showResults(context),
+          icon: const Icon(
+            Icons.search_outlined,
+            size: 30,
+          ))
     ];
   }
 
@@ -68,7 +70,9 @@ class NewsSearch extends SearchDelegate {
   @override
   Widget buildSuggestions(BuildContext context) {
     return FutureBuilder(
-        future: ApiManager.getNews(searchKeyWord: query),
+        future: ApiManager.getNews(
+          searchKeyWord: query,
+        ),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(

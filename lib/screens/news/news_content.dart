@@ -6,7 +6,7 @@ import 'package:url_launcher/url_launcher.dart';
 class NewsContent extends StatelessWidget {
   static const String routeName = "news_content";
 
-  NewsContent({super.key});
+  const NewsContent({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +35,7 @@ class NewsContent extends StatelessWidget {
                     Center(
                         child: CircularProgressIndicator(
                             value: downloadProgress.progress)),
-                errorWidget: (context, url, error) => Icon(Icons.error),
+                errorWidget: (context, url, error) => const Icon(Icons.error),
               ),
             ),
             const SizedBox(
@@ -85,7 +85,7 @@ class NewsContent extends StatelessWidget {
                       onPressed: () {
                         openUrl(args.url);
                       },
-                      label: Icon(Icons.navigate_next_outlined),
+                      label: const Icon(Icons.navigate_next_outlined),
                       icon: const Text("See The Hole Article"),
                     ),
                   ),

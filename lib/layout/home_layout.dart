@@ -45,14 +45,13 @@ class _HomeLayoutState extends State<HomeLayout> {
               },
             ),
           ],
-          title: Text(category?.title ?? "News App"),
+          title: Text("News App"),
         ),
         body: selectedWidget,
       ),
     );
   }
 
-  CategoryModel? category;
 
   late Widget selectedWidget;
 
