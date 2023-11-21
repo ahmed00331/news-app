@@ -22,12 +22,15 @@ class ApiManager {
   static Future<NewsResponse> getNews({
     String? sourceId,
     String? searchKeyWord,
+    int pageNumber = 1,
   }) async {
     Uri url = Uri.https("newsapi.org", "v2/everything", {
       "apiKey": "c6c32953197e472faa5deb3ab6ea6977",
       "sources": sourceId,
       "content": "content",
       "q": searchKeyWord,
+      "pageSize": "20",
+      "page": "$pageNumber"
     });
 
     var response = await http.get(url);

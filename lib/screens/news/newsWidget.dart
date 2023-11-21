@@ -17,45 +17,39 @@ class NewsWidget extends StatelessWidget {
       },
       child: Padding(
         padding: const EdgeInsets.all(10.0),
-        child: Card(
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
-          surfaceTintColor: Colors.white,
-          elevation: 10,
-          child: Padding(
-            padding: EdgeInsets.all(12),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(12),
-                  child: CachedNetworkImage(
-                    imageUrl: articles.urlToImage ?? "",
-                    progressIndicatorBuilder:
-                        (context, url, downloadProgress) => Center(
-                            child: CircularProgressIndicator(
-                                value: downloadProgress.progress)),
-                    errorWidget: (context, url, error) => Icon(Icons.error),
-                  ),
+        child: Padding(
+          padding: EdgeInsets.all(12),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              ClipRRect(
+                borderRadius: BorderRadius.circular(12),
+                child: CachedNetworkImage(
+                  imageUrl: articles.urlToImage ?? "",
+                  progressIndicatorBuilder: (context, url, downloadProgress) =>
+                      Center(
+                          child: CircularProgressIndicator(
+                              value: downloadProgress.progress)),
+                  errorWidget: (context, url, error) => Icon(Icons.error),
                 ),
-                Text(
-                  articles.author ?? '',
-                  textAlign: TextAlign.start,
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                ),
-                Text(
-                  articles.title ?? '',
-                  textAlign: TextAlign.start,
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                ),
-                Text(
-                  articles.publishedAt?.substring(0, 10) ?? "",
-                  textAlign: TextAlign.end,
-                  style: TextStyle(color: Colors.grey),
-                ),
-              ],
-            ),
+              ),
+              Text(
+                articles.author ?? '',
+                textAlign: TextAlign.start,
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              Text(
+                articles.title ?? '',
+                textAlign: TextAlign.start,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+              ),
+              Text(
+                articles.publishedAt?.substring(0, 10) ?? "",
+                textAlign: TextAlign.end,
+                style: TextStyle(color: Colors.grey),
+              ),
+            ],
           ),
         ),
       ),
